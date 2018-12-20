@@ -16,7 +16,7 @@ pipeline {
 
         stage('Test features') {
             steps {
-                sh 'behave'
+                sh '''source env/bin/activate; behave'''
             }
         }
     }
