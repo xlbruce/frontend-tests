@@ -1,6 +1,10 @@
 pipeline {
     agent any
 
+    environment {
+        PATH = "env/bin/:$PATH"
+    }
+
     stages {
         stage('Setup') {
             steps {
