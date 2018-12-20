@@ -16,8 +16,11 @@ pipeline {
 
         stage('Test features') {
             steps {
-                sh "export PATH=env/bin:$PATH"
-                sh '''source env/bin/activate; behave'''
+                sh '''
+                    export PATH=env/bin:$PATH
+                    source env/bin/activate
+                    behave
+                    '''
             }
         }
     }
