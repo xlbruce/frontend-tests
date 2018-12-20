@@ -4,7 +4,9 @@ pipeline {
     stages {
         stage('Setup') {
             steps {
-                sh 'pwd'
+                withPythonEnv('python3') {
+                    sh "pip install -r ${env.WORKSPACE}/requirements.txt"
+                }
             }
         }
     }
