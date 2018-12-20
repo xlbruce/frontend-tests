@@ -17,6 +17,8 @@ pipeline {
         stage('Test features') {
             steps {
                 withPythonEnv('python3') {
+                    sh "which python"
+                    sh "which chromedriver"
                     sh "behave"
                 }
             }
