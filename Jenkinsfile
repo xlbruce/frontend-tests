@@ -13,5 +13,11 @@ pipeline {
                     '''
             }
         }
+
+        stage('Test features') {
+            steps {
+                sh 'behave'
+            }
+        }
     }
 }
