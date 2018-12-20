@@ -4,10 +4,13 @@ pipeline {
     stages {
         stage('Setup') {
             steps {
-                sh "requirements path: ${env.WORKSPACE}/requirements.txt"
-                withPythonEnv('python3') {
-                    sh "pip install -r ${env.WORKSPACE}/requirements.txt"
-                }
+                sh '''
+                    if ! [ -d env ]; then
+                        virtualenv -p python3 env
+                    fi
+                    source env/bin/activate
+                    pip install -r requirements.txt
+                    '''
             }
         }
     }
