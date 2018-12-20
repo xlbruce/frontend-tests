@@ -4,22 +4,17 @@ pipeline {
     stages {
         stage('Setup') {
             steps {
-                sh '''
-                    if ! [ -d env ]; then
-                        virtualenv -p python3 env
-                    fi
-                    source env/bin/activate
-                    pip install -r requirements.txt
-                    '''
+                withPythonEnv('python3') {
+                    sh "pip install -r ${env.WORKSPACE}/requirements.txt"
+                }
             }
         }
 
         stage('Test features') {
             steps {
-                sh '''
-                    source env/bin/activate
-                    behave
-                    '''
+                withPythonEnv('python3') {
+                    sh "behave"
+                }
             }
         }
     }
